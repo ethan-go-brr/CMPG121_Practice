@@ -11,7 +11,7 @@ void squareNumber(int *p)
 int main()
 {
     // & refers to the address of the variable in memory (address operator)
-    // * dereference opertator
+    // * dereference opertator (goes to the address and extracts the value stored there)
 
     // say you have:
     int x = 10; // x - value of 10
@@ -64,7 +64,13 @@ int main()
             }
             case 2:
             {
-                squareNumber(&num);
+                squareNumber(&num); // *p = &num
+                cout << "Square nummber: " << num << endl;
+                break;
+            }
+            case 3:
+            {
+                cout << "Goodbye!" << endl;
                 break;
             }
             default:

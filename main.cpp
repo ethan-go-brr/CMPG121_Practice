@@ -10,6 +10,7 @@ const int STUDENT_COUNT = 10;
 
 void displayArray(const string arrNames[])
 {
+	cout << "List of names" << endl;
 	for (int i = 0; i < STUDENT_COUNT; i++)
 	{
 		cout << i + 1 << ". " << arrNames[i] << endl;
@@ -18,10 +19,10 @@ void displayArray(const string arrNames[])
 
 void displayMarks(const string arrPresent[], const int arrMarks[])
 {
-	cout << "\nProject marks" << endl;
+	cout << "\nNames and marks" << endl;
 	for (int i = 0; i < STUDENT_COUNT; i++)
 	{
-		cout << i + 1 << ". " << arrPresent[i] << " - " << arrMarks[i] << endl;
+		cout << i + 1 << ". " << arrPresent[i] << "\t" << arrMarks[i] << endl;
 	}
 }
 
@@ -41,8 +42,8 @@ int findBestProject(const int arrMarks[])
 int main()
 {
 	string arrNames[STUDENT_COUNT] = {
-		"Aiden", "Bella", "Caleb", "Dina", "Ethan",
-		"Fatima", "Grace", "Hassan", "Isla", "Jacob"
+		"Peter", "Diane", "George", "Frank", "Graig",
+		"Zane", "Jacky", "Mary", "Elizabeth", "Sharon"
 	};
 	string arrPresent[STUDENT_COUNT];
 	int arrMarks[STUDENT_COUNT];
@@ -64,11 +65,11 @@ int main()
 		arrNames[randomIndex] = "";
 	}
 
-	cout << "\nRandom presentation order" << endl;
+	cout << "\n";
 	displayArray(arrPresent);
 
 	char swapChoice;
-	cout << "\nWould you like to swap two students? (y/n): ";
+	cout << "Do you want to swap names (y or n)? ";
 	cin >> swapChoice;
 
 	while (tolower(static_cast<unsigned char>(swapChoice)) == 'y')
@@ -77,18 +78,18 @@ int main()
 		int secondNumber;
 
 		displayArray(arrPresent);
-		cout << "Enter the number of the first student: ";
+		cout << "Enter the number of the name from the list to swap ";
 		cin >> firstNumber;
-		cout << "Enter the number of the student they want to swap with: ";
+		cout << "Enter the new position for the name from the list ";
 		cin >> secondNumber;
 
 		while (firstNumber < 1 || firstNumber > STUDENT_COUNT ||
 			   secondNumber < 1 || secondNumber > STUDENT_COUNT)
 		{
 			cout << "Please enter two numbers from 1 to " << STUDENT_COUNT << "." << endl;
-			cout << "Enter the number of the first student: ";
+			cout << "Enter the number of the name from the list to swap ";
 			cin >> firstNumber;
-			cout << "Enter the number of the student they want to swap with: ";
+			cout << "Enter the new position for the name from the list ";
 			cin >> secondNumber;
 		}
 
@@ -96,16 +97,15 @@ int main()
 		arrPresent[firstNumber - 1] = arrPresent[secondNumber - 1];
 		arrPresent[secondNumber - 1] = temp;
 
-		cout << "\nUpdated presentation order" << endl;
 		displayArray(arrPresent);
-		cout << "Would you like to do another swap? (y/n): ";
+		cout << "Do you want to swap names (y or n)? ";
 		cin >> swapChoice;
 	}
 
-	cout << "\nEnter the project marks:" << endl;
+	cout << "\n";
 	for (int i = 0; i < STUDENT_COUNT; i++)
 	{
-		cout << "Mark for " << arrPresent[i] << " (0-100): ";
+		cout << "Enter the mark for " << arrPresent[i] << ": ";
 		cin >> arrMarks[i];
 		while (arrMarks[i] < 0 || arrMarks[i] > 100)
 		{
@@ -117,8 +117,8 @@ int main()
 	displayMarks(arrPresent, arrMarks);
 
 	int bestIndex = findBestProject(arrMarks);
-	cout << "\nBest project: " << arrPresent[bestIndex]
-		 << " with a mark of " << arrMarks[bestIndex] << "." << endl;
+	cout << "\nThe student with the highest mark is " << arrPresent[bestIndex]
+		 << " with a mark of " << arrMarks[bestIndex] << endl;
 
 	return 0;
 }
